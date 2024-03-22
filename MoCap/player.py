@@ -174,7 +174,7 @@ class Ax3DPose(object):
 
 def play_motion(joints, output="HTML"):
     fig = plt.figure()
-    ax = plt.gca(projection="3d")
+    ax = fig.add_subplot(projection = '3d')
     ob = Ax3DPose(ax, joints)
 
     if output == "interactive":

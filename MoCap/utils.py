@@ -107,7 +107,7 @@ def dict2ntuple(ndict):
         namedTuple -- a nested namedTuple object
     """
 
-    if isinstance(ndict, collections.Mapping) and not isinstance(ndict, ProtectedDict):
+    if isinstance(ndict, collections.abc.Mapping) and not isinstance(ndict, ProtectedDict):
         for key, value in ndict.items():
             ndict[key] = dict2ntuple(value)
         return dict2tuple(ndict)
@@ -132,7 +132,7 @@ def amass_fk(npz_data_path, bm_path):
         comp_device = torch.device("cuda")
     else:
         comp_device = torch.device("cpu")
-    bm = BodyModel(bm_path=bm_path, batch_size=1, num_betas=10).to(
+    bm = BodyModel(bm_fname=bm_path, num_betas=10).to(
         comp_device
     )
     bdata = np.load(npz_data_path)
